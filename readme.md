@@ -50,7 +50,9 @@
 5. 直接拷贝整个项目到目标机器，`env GO_LOG=2 nohup  ./kloud  &` 运行即可
 
 
-### 参考的项目
+### 参考的
 
 1. [蓝眼云盘](https://github.com/eyebluecn/tank)
+2. [vue-cnode](https://github.com/xjh22222228/vue-cnode)
 2. 百度云盘
+

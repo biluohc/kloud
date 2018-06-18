@@ -80,8 +80,8 @@ const API = {
 
     //  2次 hash，以后两次都加盐 @kloud
     sha2Password: function (password) {
-        var passwordOne = '' + sha256(password);
-        var passwordTwo = '' + sha256(passwordOne);
+        var passwordOne = '' + sha256(password+'kloud');
+        var passwordTwo = '' + sha256(passwordOne+'kloud');
         console.log(password, passwordOne, passwordTwo);
         return passwordTwo
     },

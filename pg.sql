@@ -2,6 +2,8 @@
 --导入 psql -U pgmxo -d pgmxodb -f pg.sql 
 --导出 pg_dump -U postgres -f pgdump.sql pgmxodb
 --更改用户 ALTER TABLE public.kloud_entry OWNER TO pgmxo
+
+-- postgresql10-contrib
 create extension pgcrypto;
 
 CREATE TABLE kloud_user (
@@ -106,13 +108,17 @@ create index kloud_public_idx_user_id on kloud_public(user_id);
 --   allow_ip VARCHAR -- null表示不限
 -- );
 
+
+-- 注意 -n 在前面，否则就多个换行符
+--  echo -n  pd |sha256sum
+
 -- admin.kloud.000
 insert into kloud_user (id, name, email, role, password) values(
   'KU4lv0o47ompYWorvYSmW6',
-  'Wspsxing', 'biluohc@qq.com', 0, '8da67c71ccb50925cc9699cc8c6d1348976d1357f5a0a3df0ec65e09b48d7ada');
+  'Wspsxing', 'biluohc@qq.com', 0, encode(digest(encode(digest('admin.kloud.000'||'kloud', 'sha256'), 'hex')||'kloud', 'sha256'), 'hex') );
 
--- demo.000|sha256|sha256 
-insert into kloud_user (id, name, email, role, password) values('Vm2ZjtC517ObGJd3y8JJUX','demo', 'dustdawn@qq.com', 1, 'adf29536afefbdb30013d4e657535902b3c35202ee3cc2b2086baea1226c3908');
+-- demo.kloud.000
+insert into kloud_user (id, name, email, role, password) values('Vm2ZjtC517ObGJd3y8JJUX','demo', 'dustdawn@qq.com', 1, encode(digest(encode(digest('demo.kloud.000'||'kloud', 'sha256'), 'hex')||'kloud', 'sha256'), 'hex'));
 
 -- drop table kloud_public;
 -- drop table kloud_share;

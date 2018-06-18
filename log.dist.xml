@@ -1,0 +1,15 @@
+    <seelog type="asynctimer" asyncinterval="5000000" minlevel="trace" maxlevel="error">  
+       <outputs formatid="common">  
+         <filter levels="info,warn,error,critical">
+                <buffered formatid="common" size="10000" flushperiod="1000">  
+                    
+                <rollingfile type="date" filename="./log/dist.txt" datepattern="2006-02-01" maxrolls="30"/>  
+                    
+                </buffered> 
+         </filter>
+       </outputs>  
+         
+        <formats>  
+            <format id="common" format="%Date/%Time %LEVEL [%File:%Line] %Msg%n" />  
+        </formats>  
+    </seelog>  
